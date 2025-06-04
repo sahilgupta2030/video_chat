@@ -81,26 +81,22 @@ function ChatPage() {
   if (loading || !chatClient || !channel) return <ChatLoader />;
 
   return (
-    <div className="h-[100vh] w-screen overflow-hidden">
-      <Chat client={chatClient} theme="messaging light">
+    <div className="h-[93vh] w-full max-w-full overflow-hidden">
+      <Chat client={chatClient}>
         <Channel channel={channel}>
-          <div className="flex flex-col h-full w-full relative">
-            {/* Call Button */}
-            <div className="absolute top-2 right-2 z-10">
-              <CallButton handleVideoCall={handleVideoCall} />
-            </div>
-
+          <div className="relative w-full h-full flex flex-col">
+            <CallButton handleVideoCall={handleVideoCall} />
             <Window>
               <ChannelHeader />
               <MessageList />
               <MessageInput focus />
             </Window>
-
-            <Thread />
           </div>
+          <Thread />
         </Channel>
       </Chat>
     </div>
+
   );
 }
 
