@@ -2,75 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure full height and prevent overflow */
-html,
-body,
-#root {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-/* Mobile First: Full width and column layout */
 .str-chat__channel {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom, #c9e8c9, #b7e7bb);
-    width: 100%;
-    min-height: 100vh;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    height: 100%;
 }
 
 .str-chat__container {
+    max-width: 1200px;
     width: 100%;
-    max-width: 100%;
-    height: 100%;
+    height: 80% !important;
+    margin: 0 auto !important;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* For tablets and up */
-@media (min-width: 640px) {
-    .str-chat__container {
-        max-width: 640px;
-    }
-}
-
-@media (min-width: 768px) {
-    .str-chat__container {
-        max-width: 768px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .str-chat__container {
-        max-width: 900px;
-    }
-}
-
-@media (min-width: 1280px) {
-    .str-chat__container {
-        max-width: 1200px;
-    }
-}
-
-/* Optional: Adjust inner elements */
-.str-chat__message-input {
-    border-top: 1px solid #ddd;
-    padding: 8px;
+    overflow: hidden;
 }
 
 .str-chat__list {
     background-color: #ffffff;
     padding: 12px;
-    overflow-x: hidden;
 }
 
 .str-chat__list-notifications {
     display: none;
+}
+
+.str-chat__message-input {
+    border-top: 1px solid #ddd;
 }
