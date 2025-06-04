@@ -2,10 +2,12 @@ import useAuthUser from '../hooks/useAuthUser.js'
 import { Link, useLocation } from 'react-router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { logout } from '../lib/api.js'
-import { BellIcon, LogOutIcon, Podcast } from 'lucide-react'
+import { BellIcon, HomeIcon, LogOutIcon, Podcast, UserIcon } from 'lucide-react'
 import ThemeSelector from './ThemeSelector.jsx'
+import { useMediaQuery } from 'react-responsive';
 
 function Navbar() {
+  const isMobile = useMediaQuery({ maxWidth: 1023 })
   const { authUser } = useAuthUser()
   const loaction = useLocation()
   const isChatPage = loaction.pathname?.startsWith("/chat")
@@ -29,23 +31,35 @@ function Navbar() {
               </Link>
             </div>
           )}
-          <div className='flex items-center gap-3 sm:gap-4 ml-auto'>
+          {isMobile && <div className='flex gap-3 sm:gap-4 ml-auto'>
+            <Link to={"/"}>
+              <button className='btn btn-ghost btn-circle'>
+                <HomeIcon className='h-6 w-6 text-base-content opacity-70' />
+              </button>
+            </Link>
+            <Link to={"/friends"}>
+              <button className='btn btn-ghost btn-circle'>
+                <UserIcon className='h-6 w-6 text-base-content opacity-70' />
+              </button>
+            </Link>
             <Link to={"/notifications"}>
               <button className='btn btn-ghost btn-circle'>
                 <BellIcon className='h-6 w-6 text-base-content opacity-70' />
               </button>
             </Link>
-          </div>
-          <ThemeSelector />
-          <div className="avatar">
-            <div className="w-9 rounded-full">
-              <img src={authUser?.profilePicture} alt="User avatar" rel='noreferrer' />
+          </div>}
+          <div className="flex items-center gap-3 sm:gap-4 ml-4">
+            <ThemeSelector />
+            <div className="avatar">
+              <div className="w-9 rounded-full">
+                <img src={authUser?.profilePicture} alt="User avatar" rel='noreferrer' />
+              </div>
             </div>
+            <button className='btn btn-ghost btn-circle' onClick={logoutMutation}>
+              <LogOutIcon className='h-6 w-6 text-base-content opacity-70' />
+            </button>
           </div>
-          {/* LogOut */}
-          <button className='btn btn-ghost btn-circle' onClick={logoutMutation}>
-            <LogOutIcon className='h-6 w-6 text-base-content opacity-70' />
-          </button>
+
         </div>
       </div>
     </nav>
